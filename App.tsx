@@ -6,7 +6,6 @@ import HomeScreen from './screen/HomeScreen';
 import SettingScreen from './screen/SettingScreen';
 const Tab = createBottomTabNavigator();
 const App = () => {
-  
   return (
     <NavigationContainer>
       <Tab.Navigator>
