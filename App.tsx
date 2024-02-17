@@ -1,47 +1,19 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
 import React, {useEffect, useState} from 'react';
-
 import { Text,FlatList,View,ActivityIndicator} from 'react-native';
-
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import HomeScreen from './screen/HomeScreen';
+import SettingScreen from './screen/SettingScreen';
+const Tab = createBottomTabNavigator();
 const App = () => {
-  const [isLoading, setLoading] = useState(true);
-  const [data, setData] = useState([]);
-  useEffect(()=>{
-    console.log('Hi');
-    fetch('https://reactnative.dev/movies.json')
-    .then((response) => response.json())
-    .then((json)=>{
-      setData(json.movies);
-      console.log(json.movies);
-    })
-    .catch((error)=>console.log(error))
-    .finally(()=> {
-      setLoading(false);
-      console.log(isLoading);
-    })
-  },[])
+  
   return (
-    <View style={{flex: 1, padding: 24}}>
-      {isLoading ? (
-        <ActivityIndicator />
-      ) : (
-        <FlatList
-          data={data}
-          keyExtractor={({id}) => id}
-          renderItem={({item}) => (
-            <Text>
-              {item.title}, {item.releaseYear}
-            </Text>
-          )}
-        />
-      )}
-    </View>
+    <NavigationContainer>
+      <Tab.Navigator>
+        <Tab.Screen name="Home" component={HomeScreen} />
+        <Tab.Screen name="Settings" component={SettingScreen} />
+      </Tab.Navigator>
+    </NavigationContainer>
   );
 }
 export default App;
