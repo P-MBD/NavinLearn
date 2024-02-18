@@ -1,14 +1,24 @@
 import React, {useState, useEffect} from 'react';
 import {View,ActivityIndicator, FlatList,Text,TouchableOpacity,StyleSheet,  Dimensions,Image} from 'react-native';
+import { SliderBox } from "react-native-image-slider-box";
 export default function HomeScreen(){
     const [data, setData]= useState([]);
+    const [images, setImage] = useState([]);
     const [isLoading, setLoading] = useState(true);
+    const myImage=[];
     useEffect(()=>{
         fetch('https://moviesapi.ir/api/v1/movies?page={1}')
         .then((response)=> response.json())
         .then((json)=>{
+            console.log('json');
             setData(json.data);
-            console.log(json.data);
+            console.log(json);
+            for(i=0; i<json.length; i++){
+                var x= json[i].data.images;
+                myImage.push(x)
+            }
+            setImage(myImage)
+            console.log(myImage)
         })
         .catch((error)=>console.log(error))
         .finally(()=> {
@@ -17,10 +27,12 @@ export default function HomeScreen(){
           })
     },[])
     return(
-        <View style={{flex:1, justifyContent:'center', alignItems:'center'}}>
-            <Text>Home</Text>
+        <View  style={styles.container}>
             {isLoading? <ActivityIndicator /> : (
-                <FlatList
+               <View>
+                <SliderBox images={images} style={{height:200}} />
+                 <Text>Latest Update</Text>
+                 <FlatList
                 data={data}
                 keyExtractor={({id})=> id}
                 renderItem={({item})=>(
@@ -36,10 +48,16 @@ export default function HomeScreen(){
                     </View>
                   </TouchableOpacity>    )}
                  />
+               </View>
             )}
         </View>);}
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        marginTop: 20,
+        backgroundColor: '#eeeeee',
+      },
     cardContent: {
       marginLeft: 20,
       marginTop: 10, },
