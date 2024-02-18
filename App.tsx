@@ -6,10 +6,11 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from './screen/HomeScreen';
 import SettingScreen from './screen/SettingScreen';
 import CategoryScreen from './screen/CategoryScreen';
+import ArticleScreen from './screen/ArticleScreen';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 const Tab = createBottomTabNavigator();
 const HomeStack = createNativeStackNavigator();
-const HomeStackScreen = ({navigation}) => (
+const HomeStackScreens = ({navigation}) => (
     <HomeStack.Navigator>
         <HomeStack.Screen name="Home" component={HomeScreen} options={{
          title:"Navin Learn",
@@ -20,16 +21,16 @@ const HomeStackScreen = ({navigation}) => (
              alignSelf:'center',
          }
         }} />
-     <HomeStack.Screen name="SettingScreen" component={SettingScreen} />
+     <HomeStack.Screen name="ArticleScreen" component={ArticleScreen} />
     </HomeStack.Navigator>
   )
-const SettingStackScreen = ({navigation})=>{
+const SettingStackScreens = ({navigation})=>{
     <HomeScreen.Navigator>
         <HomeScreen.Screen name="SettingScreen" component={SettingScreen}></HomeScreen.Screen>
     </HomeScreen.Navigator>
   }
 
-const CategoryStackScreen = ({navigation})=>{
+const CategoryStackScreens = ({navigation})=>{
     <HomeScreen.Navigator>
         <HomeScreen.Screen name="CategoryScreen" component={CategoryScreen}></HomeScreen.Screen>
     </HomeScreen.Navigator>
@@ -50,13 +51,13 @@ const App = () => {
           else if(route.name== "Settings"){
              iconName="ios-settings";
           }
-          return 
+          return (<Ionicons name='iconName' size={size} color={color} />);
         }
       })}
       >
-        <Tab.Screen name="Home" component={HomeStackScreen} />
-        <Tab.Screen name="Category" component={CategoryStackScreen} />
-        <Tab.Screen name="Settings" component={SettingStackScreen} />
+        <Tab.Screen name="Home" component={HomeStackScreens} />
+        <Tab.Screen name="Category" component={CategoryStackScreens} />
+        <Tab.Screen name="Settings" component={SettingStackScreens} />
       </Tab.Navigator>
     </NavigationContainer>
   );
