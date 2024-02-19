@@ -14,11 +14,11 @@ export default function HomeScreen({ navigation }){
             setData(json.data);
             console.log(json);
             for(i=0; i<json.length; i++){
-                var x= json[i].data.images;
-                myImage.push(x)
+              var x= json[i].images;
+              myImage = [ ...myImage, ...x]
             }
             setImage(myImage)
-            console.log(myImage)
+            console.log('myImage'+myImage)
         })
         .catch((error)=>console.log(error))
         .finally(()=> {
@@ -30,7 +30,7 @@ export default function HomeScreen({ navigation }){
         <View  style={styles.container}>
             {isLoading? <ActivityIndicator /> : (
                <View>
-                <SliderBox images={images} style={{height:200}} />
+                <SliderBox images={images} style={{height:300}} />
                  <Text>Latest Update</Text>
                  <FlatList
                 data={data}

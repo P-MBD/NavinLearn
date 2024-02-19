@@ -43,15 +43,15 @@ const App = () => {
         tabBarIcon:({color, size})=> {
           let iconName;
           if(route.name=="Home"){
-            iconName="ios-home";
+            iconName="home";
           }
           else if(route.name=="Category"){
             iconName="logo-rss";
           }
           else if(route.name== "Settings"){
-             iconName="ios-settings";
+             iconName="settings";
           }
-          return (<Ionicons name='iconName' size={size} color={color} />);
+          return 
         }
       })}
       >
