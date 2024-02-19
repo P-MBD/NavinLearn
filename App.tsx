@@ -25,7 +25,9 @@ const HomeStack = createNativeStackNavigator();
           }
         }}
         />
-        <HomeStack.Screen name="ArticleScreen" component={ArticleScreen} />
+        <HomeStack.Screen name="ArticleScreen" component={ArticleScreen}
+          options={({ route }) => ({ title: route.params.title })}
+         />
       </HomeStack.Navigator>
     );
   }

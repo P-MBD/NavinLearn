@@ -39,7 +39,11 @@ export default function HomeScreen({ navigation }){
                 keyExtractor={({id})=> id}
                 renderItem={({item})=>(
                     <TouchableOpacity style={styles.card} 
-                     onPress={() => {navigation.navigate('ArticleScreen',{myParams:item,title:item.title})}}
+                     onPress={() => {navigation.navigate('ArticleScreen',
+                     {myParams:item,
+                      title:item.title}
+                      )}
+                    }
                      >
                     <Image style={styles.image} source={{ uri: item.poster }} />
                     <View style={styles.cardContent}>

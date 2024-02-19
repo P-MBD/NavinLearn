@@ -1,11 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import {View,ActivityIndicator, FlatList,Text,TouchableOpacity,StyleSheet,  Dimensions,Image} from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
 
-export default function CategoryScreen({ navigation }){
+export default function HomeScreen({ navigation }){
     const [data, setData]= useState([]);
-    const [images, setImage] = useState([]);
     const [isLoading, setLoading] = useState(true);
-    const myImage=[];
     useEffect(()=>{
         fetch('https://moviesapi.ir/api/v1/movies?page={1}')
         .then((response)=> response.json())
@@ -24,22 +23,24 @@ export default function CategoryScreen({ navigation }){
         <View  style={styles.container}>
             {isLoading? <ActivityIndicator /> : (
                <View>
-               
                  <Text>Latest Update</Text>
                  <FlatList
                 data={data}
                 keyExtractor={({id})=> id}
                 renderItem={({item})=>(
                     <TouchableOpacity style={styles.card} 
-                    // onPress={() => {navigation.navigate('ArticleScreen',{myParams:item,title:item.title})}}
+                     onPress={() => {navigation.navigate('ArticleScreen',
+                     {myParams:item,
+                      title:item.title}
+                      )}
+                    }
                      >
                     <Image style={styles.image} source={{ uri: item.poster }} />
                     <View style={styles.cardContent}>
                       <Text style={styles.name}>{item.title}</Text>
-                      <Text style={styles.position}>{item.genres}</Text>
+                      <Text style={styles.position}>{item.country}</Text>
                       <TouchableOpacity
-                        style={styles.followButton}
-                        onPress={()=> navigation.navigate('ArticleScreen',{myParams:item,title:item.title})}>
+                        style={styles.followButton}>
                         <Text style={styles.followButtonText}>Follow</Text>
                       </TouchableOpacity>
                     </View>
