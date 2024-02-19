@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import {View,ActivityIndicator, FlatList,Text,TouchableOpacity,StyleSheet,  Dimensions,Image} from 'react-native';
 import { SliderBox } from "react-native-image-slider-box";
+import { NavigationContainer } from '@react-navigation/native';
+
 export default function HomeScreen({ navigation }){
     const [data, setData]= useState([]);
     const [images, setImage] = useState([]);
@@ -36,7 +38,9 @@ export default function HomeScreen({ navigation }){
                 data={data}
                 keyExtractor={({id})=> id}
                 renderItem={({item})=>(
-                    <TouchableOpacity style={styles.card} onPress={() => {navigation.navigate('ArticleScreen',{myParams:item,})}}>
+                    <TouchableOpacity style={styles.card} 
+                     onPress={() => {navigation.navigate('ArticleScreen',{myParams:item,title:item.title})}}
+                     >
                     <Image style={styles.image} source={{ uri: item.poster }} />
                     <View style={styles.cardContent}>
                       <Text style={styles.name}>{item.title}</Text>
