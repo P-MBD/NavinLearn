@@ -12,15 +12,15 @@ export default function HomeScreen({ navigation }){
         fetch('https://moviesapi.ir/api/v1/movies?page={1}')
         .then((response)=> response.json())
         .then((json)=>{
-            console.log('json');
-            setData(json.data);
-            console.log(json);
-            for(i=0; i<json.length; i++){
+          console.log('json');
+          setData(json.data);
+          console.log(json);
+          for(i=0; i<json.length; i++){
               var x= json[i].images;
               myImage = [ ...myImage, ...x]
-            }
-            setImage(myImage)
-            console.log('myImage'+myImage)
+          }
+          setImage(myImage)
+          console.log(myImage)
         })
         .catch((error)=>console.log(error))
         .finally(()=> {
@@ -32,7 +32,7 @@ export default function HomeScreen({ navigation }){
         <View  style={styles.container}>
             {isLoading? <ActivityIndicator /> : (
                <View>
-                <SliderBox images={images} style={{height:300}} />
+                 <SliderBox images={myImage} style={{height:200}} /> 
                  <Text>Latest Update</Text>
                  <FlatList
                 data={data}

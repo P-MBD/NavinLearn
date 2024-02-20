@@ -4,7 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from './screen/HomeScreen';
-import SettingScreen from './screen/SettingScreen';
+import AboutScreen from './screen/AboutScreen';
 import CategoryScreen from './screen/CategoryScreen';
 import ArticleScreen from './screen/ArticleScreen';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -32,12 +32,12 @@ const HomeStack = createNativeStackNavigator();
     );
   }
   
-  const SettingsStack = createNativeStackNavigator();
-  function SettingsStackScreen({navigation}) {
+  const AboutStack = createNativeStackNavigator();
+  function AboutStackScreen({navigation}) {
     return (
-      <SettingsStack.Navigator>
-        <SettingsStack.Screen name="Settings" component={SettingScreen} />
-      </SettingsStack.Navigator>
+      <AboutStack.Navigator>
+        <AboutStack.Screen name="About" component={AboutScreen} />
+      </AboutStack.Navigator>
     );
   }
   
@@ -56,7 +56,7 @@ const App = () => {
       <Tab.Navigator>
         <Tab.Screen name="Home" component={HomeStackScreen} />
         <Tab.Screen name="Category" component={CategoryStackScreen} />
-        <Tab.Screen name="Settings" component={SettingsStackScreen} />
+        <Tab.Screen name="About" component={AboutStackScreen} />
       </Tab.Navigator>
     </NavigationContainer>
   );
